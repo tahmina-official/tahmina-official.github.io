@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahmina Akter - Generative AI Engineer & Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes swapText {
+
+            0%,
+            45% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .fade-1 {
+            animation: swapText 4s infinite;
+        }
+
+        .fade-2 {
+            animation: swapText 4s infinite reverse;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Icon Components
+        const Menu = ({ size = 24 }) => <i className={`fas fa-bars`} style={{ fontSize: size }}></i>;
+        const X = ({ size = 24 }) => <i className={`fas fa-xmark`} style={{ fontSize: size }}></i>;
+        const Github = ({ size = 24 }) => <i className={`fab fa-github`} style={{ fontSize: size }}></i>;
+        const Linkedin = ({ size = 24 }) => <i className={`fab fa-linkedin`} style={{ fontSize: size }}></i>;
+        const Mail = ({ size = 24 }) => <i className={`fas fa-envelope`} style={{ fontSize: size }}></i>;
+        const ChevronRight = ({ size = 24 }) => <i className={`fas fa-chevron-right`} style={{ fontSize: size }}></i>;
+        const Code = ({ size = 24 }) => <i className={`fas fa-code`} style={{ fontSize: size }}></i>;
+        const Cpu = ({ size = 24 }) => <i className={`fas fa-microchip`} style={{ fontSize: size }}></i>;
+        const BarChart3 = ({ size = 24 }) => <i className={`fas fa-chart-bar`} style={{ fontSize: size }}></i>;
+
+        function Portfolio() {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [activeSection, setActiveSection] = useState('home');
+
+            // Smooth scroll to section
+            const scrollToSection = (sectionId) => {
+                setIsMenuOpen(false);
+                setActiveSection(sectionId);
+
+                // Scroll after a brief delay to ensure DOM is ready
+                setTimeout(() => {
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100);
+            };
+
+            // Handle navigation click
+            const handleNavClick = (sectionId) => {
+                scrollToSection(sectionId);
+            };
+
+            const [impressIndex, setImpressIndex] = useState(0);
+
+            const impressWords = [
+                "Impressed?",
+                "impresionada?",
+                "impressionnée?",
+                "tógtha (le)?"
+            ];
+
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setImpressIndex((prev) => (prev + 1) % impressWords.length);
+                }, 1500);
+
+                return () => clearInterval(interval);
+            }, []);
+
+            const projects = [
+                {
+                    id: 1,
+                    title: "Enterprise Textile Management System",
+                    category: "Full-Stack Development",
+                    description: "Enterprise-grade textile management web application serving 50,000+ users for product, inventory, and order management.",
+                    impact: "80% reduction in manual processing time",
+                    technologies: ["Angular", "Django", "PostgreSQL", "NgRx", "Module Federation"],
+                    year: "2016-2024",
+                    highlights: [
+                        "Developed scalable micro-frontend architecture using Nx and Module Federation",
+                        "85% improvement in UI response times through performance optimization",
+                        "60% faster feature delivery across multiple teams",
+                        "40% reduction in development effort with reusable component libraries"
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "AI-Powered Textile Analytics Platform",
+                    category: "Generative AI & RAG",
+                    description: "Intelligent document retrieval and analysis system for textile industry data using RAG pipelines and LLMs.",
+                    impact: "Real-time contextual insights from unstructured data",
+                    technologies: ["Python", "LangChain", "LangGraph", "Claude API", "Pinecone", "React"],
+                    year: "2024",
+                    highlights: [
+                        "Built RAG pipelines using vector databases for semantic search",
+                        "Integrated Claude API for intelligent document analysis",
+                        "Optimized embedding strategies for textile-specific terminology",
+                        "Implemented MCP protocols for seamless tool integration"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Multi-Step AI Agent Workflow",
+                    category: "AI Agents",
+                    description: "Automated business process automation using AI agents for multi-step reasoning and decision-making in textile operations.",
+                    impact: "Autonomous handling of complex workflows",
+                    technologies: ["LangGraph", "Function Calling", "OpenAI API", "Django", "Redis"],
+                    year: "2024",
+                    highlights: [
+                        "Developed agent-based workflows for order processing automation",
+                        "Implemented function calling for precise business logic execution",
+                        "Built caching layer using Redis for performance optimization",
+                        "Integrated with existing Django backend services"
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "Real-Time Inventory Synchronization",
+                    category: "Frontend Architecture",
+                    description: "Real-time inventory and order data synchronization system integrating Django REST APIs with Angular frontend.",
+                    impact: "Instant data consistency across 50,000+ users",
+                    technologies: ["Angular", "RxJS", "Django REST", "WebSockets", "MongoDB"],
+                    year: "2018-2023",
+                    highlights: [
+                        "Implemented real-time data synchronization using RxJS operators",
+                        "Designed complex asynchronous data flows with NgRx state management",
+                        "Achieved 99.9% uptime with robust error handling",
+                        "Optimized database queries for multi-tenant architecture"
+                    ]
+                }
+            ];
+
+            const skills = [
+                {
+                    category: "Generative AI & LLMs",
+                    items: ["OpenAI API", "Claude API", "Gemini API", "Prompt Engineering", "RAG Systems", "AI Agents", "Function Calling", "MCP"]
+                },
+                {
+                    category: "AI Frameworks",
+                    items: ["LangChain", "LangGraph", "LlamaIndex", "Hugging Face Transformers", "Vector Databases (Pinecone, ChromaDB, FAISS)"]
+                },
+                {
+                    category: "Frontend Development",
+                    items: ["Angular", "React", "TypeScript", "JavaScript", "HTML5", "CSS3", "State Management (NgRx, RxJS)"]
+                },
+                {
+                    category: "Architecture & Scalability",
+                    items: ["Micro-Frontend Architecture", "Nx Monorepo", "Module Federation", "Microservices", "REST APIs"]
+                },
+                {
+                    category: "Backend & Databases",
+                    items: ["Python", "Django", "PostgreSQL", "MongoDB", "Redis", "CI/CD (GitHub Actions)"]
+                },
+                {
+                    category: "Testing & Quality",
+                    items: ["Unit Testing", "Jasmine", "Karma", "Component Testing", "Integration Testing"]
+                }
+            ];
+
+            const experience = [
+                {
+                    role: "Generative AI Engineer",
+                    company: "Sonnet Textile Industries Ltd.",
+                    period: "October 2024 – Present",
+                    location: "Chattogram, Bangladesh",
+                    description: "Leading AI innovation in textile operations",
+                    achievements: [
+                        "Designed and deployed RAG systems using vector databases for intelligent document retrieval",
+                        "Built AI agents and tool-calling workflows using LangChain and LangGraph",
+                        "Integrated LLM-based systems (OpenAI, Claude, Gemini) with frontend applications",
+                        "Optimized prompt engineering for textile-specific domain accuracy",
+                        "Implemented CI/CD pipelines using GitHub Actions for AI services"
+                    ]
+                },
+                {
+                    role: "Front-end Software Engineer",
+                    company: "Sonnet Textile Industries Ltd.",
+                    period: "May 2016 – September 2024",
+                    location: "Chattogram, Bangladesh",
+                    description: "Built enterprise textile management platform",
+                    achievements: [
+                        "Developed enterprise-grade application serving 50,000+ users",
+                        "Designed and implemented micro-frontend architecture with 60% improvement in delivery speed",
+                        "Achieved 85% reduction in UI response delays through optimization",
+                        "Reduced manual processing time by 80% through digital workflow integration",
+                        "Improved code reliability with 30%+ reduction in production defects via unit testing"
+                    ]
+                }
+            ];
+
+            const education = [
+                {
+                    degree: "MERN Software Engineering",
+                    institution: "Per Scholas",
+                    location: "Bronx, New York",
+                    period: "June 2026"
+                },
+                {
+                    degree: "Bachelor of Science in Computer Science and Engineering",
+                    institution: "Premier University",
+                    location: "Chattogram, Bangladesh",
+                    period: "May 2016"
+                }
+            ];
+
+            const stats = [
+                { label: "Years of Experience", value: "8+" },
+                { label: "AI Projects", value: "5+" },
+                { label: "Users Impacted", value: "50K+" },
+                { label: "Performance Improvement", value: "85%" }
+            ];
+
+            return (
+                <div className="min-h-screen">
+                    {/* Navigation */}
+                    <nav className="fixed top-0 w-full bg-slate-950/80 backdrop-blur-md border-b border-slate-800 z-50">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center h-16">
+                                <button
+                                    onClick={() => scrollToSection('home')}
+                                    className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
+                                >
+                                    Tahmina Akter
+                                </button>
+
+                                {/* Desktop Menu */}
+                                <div className="hidden md:flex gap-8">
+                                    {['home', 'projects', 'experience', 'skills', 'contact'].map(item => (
+                                        <button
+                                            key={item}
+                                            onClick={() => handleNavClick(item)}
+                                            className="capitalize text-sm font-medium hover:text-cyan-400 transition-colors duration-300"
+                                        >
+                                            {item}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Mobile Menu Button */}
+                                <button
+                                    className="md:hidden text-xl"
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                >
+                                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                                </button>
+                            </div>
+
+                            {/* Mobile Menu */}
+                            {isMenuOpen && (
+                                <div className="md:hidden pb-4 space-y-2 border-t border-slate-800 pt-4">
+                                    {['home', 'projects', 'experience', 'skills', 'contact'].map(item => (
+                                        <button
+                                            key={item}
+                                            onClick={() => handleNavClick(item)}
+                                            className="block w-full text-left capitalize px-4 py-2 hover:bg-slate-800 rounded transition-colors"
+                                        >
+                                            {item}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+                        <div className="max-w-6xl mx-auto w-full">
+                            <div className="space-y-6">
+                                <div className="inline-block">
+                                    <span className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 text-sm font-medium">
+                                        🚀 Generative AI Engineer & Full-Stack Developer
+                                    </span>
+                                </div>
+
+                                <h1 className="text-5xl sm:text-7xl font-bold leading-tight">
+                                    Building Intelligent
+                                    <br />
+                                    <span className="gradient-text">
+                                        AI Systems
+                                    </span>
+                                </h1>
+
+                                <p className="text-xl text-slate-300 max-w-2xl leading-relaxed">
+                                    8+ years transforming textile operations through scalable software architecture and cutting-edge AI solutions.
+                                    Specialized in enterprise-scale RAG systems, LLM integration, and full-stack web applications.
+                                </p>
+
+                                <div className="flex gap-4 pt-8 flex-wrap">
+                                    <button
+                                        onClick={() => handleNavClick('projects')}
+                                        className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-105 active:scale-95"
+                                    >
+                                        View My Work →
+                                    </button>
+                                    <button
+                                        onClick={() => handleNavClick('contact')}
+                                        className="px-8 py-3 border border-slate-600 rounded-lg font-semibold hover:bg-slate-800 transition-colors transform hover:scale-105 active:scale-95"
+                                    >
+                                        Get in Touch
+                                    </button>
+                                </div>
+
+                                {/* Stats */}
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-16">
+                                    {stats.map((stat, idx) => (
+                                        <div key={idx} className="space-y-1">
+                                            <div className="text-3xl font-bold text-cyan-400">{stat.value}</div>
+                                            <div className="text-sm text-slate-400">{stat.label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Projects Section */}
+                    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="space-y-4 mb-16">
+                                <h2 className="text-4xl sm:text-5xl font-bold">Featured Projects</h2>
+                                <p className="text-slate-400 text-lg">Transforming textile operations through innovative technology</p>
+                            </div>
+
+                            <div className="space-y-8">
+                                {projects.map((project) => (
+                                    <div
+                                        key={project.id}
+                                        className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-2xl p-8 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 hover-lift"
+                                    >
+                                        <div className="space-y-6">
+                                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                                                <div className="space-y-2">
+                                                    <span className="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-400 text-sm rounded-full border border-cyan-500/30">
+                                                        {project.category}
+                                                    </span>
+                                                    <h3 className="text-2xl font-bold">{project.title}</h3>
+                                                    <p className="text-slate-400">{project.description}</p>
+                                                </div>
+                                                <span className="text-sm text-slate-500 whitespace-nowrap">{project.year}</span>
+                                            </div>
+
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Key Impact</h4>
+                                                    <p className="text-slate-300">{project.impact}</p>
+                                                </div>
+
+                                                <div>
+                                                    <h4 className="text-sm font-semibold mb-3">Highlights</h4>
+                                                    <ul className="space-y-2">
+                                                        {project.highlights.map((highlight, i) => (
+                                                            <li key={i} className="flex gap-2 text-slate-300">
+                                                                <span className="text-cyan-400 flex-shrink-0">▸</span>
+                                                                <span>{highlight}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+
+                                                <div className="flex flex-wrap gap-2 pt-4">
+                                                    {project.technologies.map((tech, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="px-3 py-1 bg-slate-700/50 text-slate-300 text-xs rounded-md border border-slate-600 hover:border-cyan-500/50 transition-colors"
+                                                        >
+                                                            {tech}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Experience Section */}
+                    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="space-y-4 mb-16">
+                                <h2 className="text-4xl sm:text-5xl font-bold">Professional Experience</h2>
+                            </div>
+
+                            <div className="space-y-8">
+                                {experience.map((job, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="border-l-2 border-cyan-500/30 pl-8 hover:border-cyan-500 transition-colors duration-300"
+                                    >
+                                        <div className="space-y-3">
+                                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                                                <h3 className="text-2xl font-bold">{job.role}</h3>
+                                                <span className="text-sm text-slate-400">{job.period}</span>
+                                            </div>
+
+                                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-slate-400">
+                                                <span className="font-semibold text-slate-300">{job.company}</span>
+                                                <span className="hidden sm:inline">•</span>
+                                                <span>{job.location}</span>
+                                            </div>
+
+                                            <p className="text-slate-300 py-2">{job.description}</p>
+
+                                            <ul className="space-y-2">
+                                                {job.achievements.map((achievement, i) => (
+                                                    <li key={i} className="flex gap-3 text-slate-300">
+                                                        <span className="text-cyan-400 font-bold flex-shrink-0">▸</span>
+                                                        <span>{achievement}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Education */}
+                            <div className="mt-16 pt-16 border-t border-slate-700">
+                                <h3 className="text-2xl font-bold mb-8">Education</h3>
+                                <div className="space-y-6">
+                                    {education.map((edu, idx) => (
+                                        <div key={idx} className="bg-slate-800/30 p-6 rounded-lg border border-slate-700">
+                                            <h4 className="text-xl font-bold mb-2">{edu.degree}</h4>
+                                            <p className="text-slate-400">{edu.institution} • {edu.location}</p>
+                                            <p className="text-sm text-slate-500 mt-2">{edu.period}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Skills Section */}
+                    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="space-y-4 mb-16">
+                                <h2 className="text-4xl sm:text-5xl font-bold">Technical Skills</h2>
+                            </div>
+
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {skills.map((skillGroup, idx) => (
+                                    <div key={idx} className="space-y-4">
+                                        <div className="flex items-center gap-3">
+                                            <i className={`fas ${idx === 0 ? 'fa-microchip text-purple-400' : idx === 1 ? 'fa-code text-blue-400' : idx === 2 ? 'fa-chart-bar text-cyan-400' : 'fa-chevron-right text-cyan-400'}`}></i>
+                                            <h3 className="text-lg font-bold">{skillGroup.category}</h3>
+                                        </div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {skillGroup.items.map((skill, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="px-3 py-2 bg-slate-700/50 text-slate-300 text-sm rounded-md border border-slate-600 hover:border-cyan-500/50 transition-colors"
+                                                >
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+
+                    {/* Contact Section */}
+                    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="space-y-4 mb-16">
+                                <div className="space-y-2">
+                                    <div className="relative h-16">
+                                        <h2 className="absolute inset-0 text-4xl sm:text-5xl font-bold transition-all duration-500">
+                                            {impressWords[impressIndex]}{" "}
+                                            <span className="text-sm text-slate-400">
+                                                {impressIndex === 0 ? "a bit?" : ""}
+                                            </span>
+                                        </h2>
+                                    </div>
+
+                                    <h2 className="text-4xl sm:text-5xl font-bold">
+                                        Hire me then.
+                                    </h2>
+                                </div>
+
+                                <p className="text-slate-400 text-lg">Open to collaboration, opportunities, and interesting conversations about AI and web development.</p>
+                            </div>
+
+                            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-2xl p-12 space-y-8">
+                                <div className="grid sm:grid-cols-3 gap-6">
+                                    <a
+                                        href="mailto:tahmina.usa24@gmail.com?subject=Let's%20Connect&body=Hi%20Tahmina,%0A%0AI'd%20love%20to%20connect%20with%20you!"
+                                        className="group flex items-center gap-4 p-6 bg-slate-700/30 rounded-lg border border-slate-600 hover:border-cyan-500/50 transition-all hover-lift cursor-pointer"
+                                    >
+                                        <i className="fas fa-envelope text-cyan-400 text-2xl group-hover:scale-110 transition-transform"></i>
+                                        <div>
+                                            <p className="text-sm text-slate-400">Email</p>
+                                            <p className="font-semibold">tahmina.usa24@gmail.com</p>
+                                        </div>
+                                    </a>
+
+                                    <a
+                                        href="https://www.linkedin.com/in/techtahus/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center gap-4 p-6 bg-slate-700/30 rounded-lg border border-slate-600 hover:border-cyan-500/50 transition-all hover-lift cursor-pointer"
+                                    >
+                                        <i className="fab fa-linkedin text-cyan-400 text-2xl group-hover:scale-110 transition-transform"></i>
+                                        <div>
+                                            <p className="text-sm text-slate-400">LinkedIn</p>
+                                            <p className="font-semibold">techtahus</p>
+                                        </div>
+                                    </a>
+
+                                    <a
+                                        href="https://github.com/tahmina-official"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center gap-4 p-6 bg-slate-700/30 rounded-lg border border-slate-600 hover:border-cyan-500/50 transition-all hover-lift cursor-pointer"
+                                    >
+                                        <i className="fab fa-github text-cyan-400 text-2xl group-hover:scale-110 transition-transform"></i>
+                                        <div>
+                                            <p className="text-sm text-slate-400">GitHub</p>
+                                            <p className="font-semibold">tahmina-official</p>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div className="pt-8 border-t border-slate-700">
+                                    <p className="text-slate-400 text-center">
+                                        Currently exploring opportunities in Generative AI Engineer, LLMs, RAG Systems, AI Agents,Full-Stack AI Systems.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="border-t border-slate-800 py-8 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-6xl mx-auto text-center text-slate-500 text-sm">
+                            <p>© 2024 Tahmina Akter. Built with React and Tailwind CSS.</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<Portfolio />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
