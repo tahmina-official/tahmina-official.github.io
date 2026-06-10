@@ -2,6 +2,8 @@
 
 A modern, responsive portfolio website showcasing expertise in Generative AI, LLM systems, full-stack development, and enterprise-scale textile management solutions.
 
+🌐 Live Demo: https://tahmina-official.github.io/
+
 ## ✨ Features
 
 - **Modern Dark Design** - Inspired by k4fi.com with cyan/blue gradients
